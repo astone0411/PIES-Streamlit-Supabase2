@@ -219,27 +219,7 @@ def _render_results(records: list, source_filename: str):
 
     st.markdown(f"Showing **{len(filtered)}** of **{len(df)}** variant(s)")
 
-    # Colour-code ClinVar significance
-    def highlight_clinsig(val):
-        if not isinstance(val, str):
-            return ""
-        v = val.lower()
-        if "pathogenic" in v and "likely" not in v:
-            return "background-color: #f8d7da; color: #842029;"
-        if "likely_pathogenic" in v or "likely pathogenic" in v:
-            return "background-color: #fde8d8; color: #7d3c10;"
-        if "benign" in v:
-            return "background-color: #d1e7dd; color: #0a3622;"
-        if "uncertain" in v or "vus" in v:
-            return "background-color: #fff3cd; color: #664d03;"
-        return ""
-
-    styled = filtered.style.applymap(
-        highlight_clinsig,
-        subset=["ClinVar Significance"] if "ClinVar Significance" in filtered.columns else []
-    )
-
-    st.dataframe(styled, use_container_width=True, hide_index=True)
+    st.dataframe(filtered, use_container_width=True, hide_index=True)
 
     # --- CSV download ---
     csv_bytes = filtered.to_csv(index=False).encode("utf-8")
