@@ -11,7 +11,7 @@ from utils.auth import is_authenticated, login, logout
 # Page config — must be first Streamlit call
 # ---------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Lab LIMS",
+    page_title="PIES for TART",
     page_icon="🧪",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -53,7 +53,8 @@ if "db_initialized" not in st.session_state:
 def render_login():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown("## 🧪 Lab LIMS")
+        st.markdown("### 🧪 Tertiary Analysis & Reporting Team")
+        st.markdown("### PIES - Patient Information Entry System")
         st.markdown("Please sign in to continue.")
         st.divider()
 
@@ -80,7 +81,7 @@ def render_app():
 
     # Sidebar
     with st.sidebar:
-        st.markdown("### 🧪 Lab LIMS")
+        st.markdown("### 🧪 TART - PIES")
         st.caption(f"Signed in as **{st.session_state['display_name']}** ({st.session_state['role']})")
         st.divider()
 
